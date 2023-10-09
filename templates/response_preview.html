@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response Preview</title>
+</head>
+<body>
+    <h1>Response Preview</h1>
+    <h2>Email Details</h2>
+    <p><strong>From:</strong> {{ sender }}</p>
+    <p><strong>Subject:</strong> {{ subject }}</p>
+    <p><strong>Body:</strong></p>
+    <pre>{{ body }}</pre>
+    <h2>Generated Response</h2>
+    <pre>{{ chatbot_response }}</pre>
+    <h3>Do you want to use this response or change it?</h3>
+    <form action="{{ url_for('confirm_or_edit_response', message_id=message_id) }}" method="post">
+        <textarea name="edited_response" id="edited_response" rows="4" cols="50">{{ chatbot_response }}</textarea><br>
+        <input type="submit" name="action" value="Use Response">
+        <input type="submit" name="action" value="Edit Response">
+    </form>
+    <form action="{{ url_for('edit_response', message_id=message_id) }}" method="post">
+    <textarea name="current_response" id="current_response" rows="4" cols="50" hidden>{{ chatbot_response }}</textarea>
+    <textarea name="edit_prompt" id="edit_prompt" rows="4" cols="50" placeholder="How would you like to change this response?"></textarea><br>
+    <input type="submit" value="Submit Changes">
+    </form>
+</body>
+</html>

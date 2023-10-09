@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Details</title>
+</head>
+<body>
+    <h1>Email Details</h1>
+    <p><strong>From:</strong> {{ sender }}</p>
+    <p><strong>Subject:</strong> {{ subject }}</p>
+    <p><strong>Body:</strong></p>
+    <pre>{{ body }}</pre>
+    <h2>How would you like to respond?</h2>
+<form action="{{ url_for('respond_to_email', message_id=message_id) }}" method="post">
+    <textarea name="response_prompt" id="response_prompt" rows="4" cols="50" placeholder="Enter how you'd like to respond..."></textarea><br>
+    <input type="submit" value="Get Response">
+</form>
+    <a href="/search">Back to Search Results</a>
+</body>
+</html>
+
